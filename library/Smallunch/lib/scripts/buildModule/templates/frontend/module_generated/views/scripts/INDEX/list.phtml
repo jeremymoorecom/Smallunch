@@ -1,0 +1,7 @@
+<?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_list_filter.phtml', '[[moduleName]]', array('filter'=>$this->filter)); ?>
+<?php if (!$this->pager->getExecuted()): ?>
+<?php echo 'no result'; ?>
+<?php else: ?>
+<?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_list.phtml', '[[moduleName]]', array('[[moduleNameVar]]s'=>$this->[[moduleNameVar]]s)); ?>
+<div style="float:right;"><?php $this->pager_layout->display(); ?></div>
+<?php endif; ?>

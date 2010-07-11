@@ -1,0 +1,21 @@
+<div id="zf_admin_container">
+<div id="zf_admin_header">
+  <div class="ui-state-default" style="margin-top:10px;"><strong>Users</strong></div>
+  <?php echo $this->partial('_partial/_index_header.phtml', 'Users', array('columns' => $this->columns, 'pager_layout'=>$this->pager_layout)); ?>
+</div>
+
+<div id="zf_admin_content">
+<?php echo $this->partial('_partial/_messages.phtml', 'Users', array('errorMessages' => $this->errorMessages, 'messages'=>$this->messages)); ?>
+<div class="ui-widget-content">
+<?php echo $this->partial('_partial/_index.phtml', 'Users', array('index'=>$this->index)); ?>
+</div>
+<br/>
+<?php echo $this->partial('_partial/_index_actions.phtml', 'Users'); ?>
+</div>
+
+
+<div id="zf_admin_footer">
+<?php echo $this->partial('_partial/_index_footer.phtml', 'Users', array('columns' => $this->columns, 'pager_layout'=>$this->pager_layout)); ?>
+</div>
+
+</div>

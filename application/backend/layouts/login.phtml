@@ -1,0 +1,22 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headLink(); ?>
+<?php echo $this->headScript(); ?>
+</head>
+<body>
+
+<div class="container" align="center" style="line-height:18px">
+<br><br><br>
+	<div prepend-11 prepend-top">Administration Login</div>
+	<div prepend-9 prepend-top"><br>
+	<?php echo $this->layout()->content ?>
+	</div>
+</div>
+<script> document.getElementById('username').focus(); </script>
+</body>
+</html>

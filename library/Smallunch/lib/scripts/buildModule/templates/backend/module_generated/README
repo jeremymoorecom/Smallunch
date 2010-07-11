@@ -1,0 +1,6 @@
+This folder contains the template used to build the generated module.
+These files contain the default functions and views for the module.
+Files in the 'backend_module_extended' link to these generated files, 
+so if any new files are created a matching file that includes the new file must also be created inside the 'backend_module_extended' template folder.
+This module does build a CRUD for any tables.
+For non CRUD modules, update the 'backend_module' templates

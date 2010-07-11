@@ -1,0 +1,6 @@
+Build Smallunch Module:
+usage: buildModule location module (table).
+location    frontend or backend
+module      you module name
+(optional)
+table       table module works with (specify Doctrine class name).

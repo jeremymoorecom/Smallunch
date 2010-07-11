@@ -1,0 +1,31 @@
+<?php if (!empty($this->filter)): ?>
+  <div style='float:right;width:200px;'>
+  <?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_list_filter.phtml', '[[moduleName]]', array('filter'=>$this->filter, 'display'=>$this->display, 'labels'=>$this->labels)); ?>
+  </div>
+<?php endif; ?>
+<div id="zf_admin_container" style='float:left;width:700px;'>
+<div id="zf_admin_header">
+  <div class="ui-state-default"><strong><?php echo $this->heading;?></strong></div>
+  <?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_list_header.phtml', '[[moduleName]]', array('columns' => $this->columns, 'pager_layout'=>$this->pager_layout)); ?>
+</div>
+
+<div id="zf_admin_content">
+<?php echo $this->partial('_partial/_messages.phtml', '[[moduleName]]', array('errorMessages' => $this->errorMessages, 'messages'=>$this->messages)); ?>
+<div class="ui-widget-content">
+<?php if (!$this->pager->getExecuted()): ?>
+<?php echo 'no result'; ?>
+<?php else: ?>
+<?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_list.phtml', '[[moduleName]]', array('[[moduleNameVar]]s'=>$this->[[moduleNameVar]]s, 'display'=>$this->display, 'labels'=>$this->labels)); ?>
+<div style="float:right;"><?php $this->pager_layout->display(); ?></div>
+<?php endif; ?>
+</div>
+<br/>
+<?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_list_actions.phtml', '[[moduleName]]'); ?>
+</div>
+
+
+<div id="zf_admin_footer">
+<?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_list_footer.phtml', '[[moduleName]]', array('columns' => $this->columns, 'pager_layout'=>$this->pager_layout)); ?>
+</div>
+
+</div>

@@ -1,0 +1,4 @@
+This folder contains the template used to build a stand alone backend module.
+This module does not extend a generated module.
+This module also does not build a CRUD for any tables.
+For CRUD modules, update the 'backend_module_extended' templates

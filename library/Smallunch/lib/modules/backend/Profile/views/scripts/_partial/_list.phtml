@@ -1,0 +1,18 @@
+<table border="0" width="100%" class="admin_list">
+<tr>
+
+  <?php foreach ($this->display as $dis):?>
+    <th class="admin_list">
+      <?php echo (key_exists($dis, $this->labels) ? $this->labels[$dis] : $dis)?>
+    </th> 
+  <?php endforeach;?>
+
+</tr>
+<?php foreach ($this->list as $lst): ?>
+<tr>
+  <?php foreach ($this->display as $dis):?>
+    <td><a href="<?php echo $this->url(array('module'=>'Profile', 'action'=>'edit', 'id'=>$lst->id));?>"><?php echo $lst->$dis;?></a></td>
+  <?php endforeach;?>
+</tr>
+<?php endforeach; ?>
+</table>

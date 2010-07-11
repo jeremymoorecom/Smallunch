@@ -1,0 +1,91 @@
+<?php echo $this->doctype() ?>
+<head>
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headLink(); ?>
+<?php echo $this->headScript(); ?>
+
+</head>
+<body>
+   
+
+<div id="wrap">
+
+  <!--header -->
+  <div id="header">     
+        
+    <h1 id="logo-text"><a href="index.html" title="">Smallunch Framework</a></h1>    
+    <p id="slogan">Rapid Development with Zend</p>   
+      
+    
+      
+  <!--header ends-->          
+  </div>
+    
+  <!-- navigation starts--> 
+  <div  id="nav">
+    
+  <!-- navigation ends--> 
+  </div>          
+      
+  <!-- content-wrap starts -->
+  <div id="content-wrap">
+  
+    <div id="main">
+        
+       <?php echo $this->layout()->content ?>
+      
+
+    <!-- main ends -->  
+    </div>
+        
+    <div id="sidebar">
+      
+      <h3>Smallunch</h3>
+      <ul class="sidemenu">       
+        <li><a href="http://www.smallunch.com">Smallunch Website</a></li>
+        <li><a href="http://www.smallunch.com">Smallunch Quick Start Guide</a></li>
+        <li><a href="http://twitter.com/smallunch">Follow us on Twitter</a></li>
+        <li><a href="http://www.facebook.com/">Facebook</a></li>
+        
+      </ul> 
+        
+      <h3>Resources</h3>
+      <ul class="sidemenu">
+        <li><a href="http://framework.zend.com/">Zend Framework</a></li> 
+        <li><a href="http://www.doctrine-project.org/">Doctrine</a></li>
+        <li><a href="http://www.blueprintcss.org/">blueprint</a></li>       
+      </ul>
+      
+    <!-- sidebar ends -->   
+    </div>    
+    
+  <!-- content-wrap ends--> 
+  </div>
+    
+  <!-- footer starts -->    
+  <div id="footer-wrap"><div id="footer-content">
+  
+    <div id="footer-columns"> 
+      
+
+      
+    <!-- footer-columns ends -->
+    </div>  
+  
+    <div id="footer-bottom">        
+      <p>
+     
+      Design by: <a href="http://www.styleshout.com/">styleshout</a>
+      </p>          
+    </div>  
+
+<!-- footer ends-->
+</div></div>
+
+<!-- wrap ends here -->
+</div>
+<?php echo $this->partial('_javascript_bottom.phtml', array()); ?>
+
+</body>
+</html>

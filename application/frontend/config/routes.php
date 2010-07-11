@@ -1,0 +1,2 @@
+<?php
+#$router = $frontController->getRouter();

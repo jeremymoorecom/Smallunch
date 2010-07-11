@@ -1,0 +1,52 @@
+h1 {color: #CECECE; }
+#loading {
+  position:fixed;
+  top:0;left:0; /*This may prevent it from being seen if the user has scrolled down */
+  color:#fff;
+  text-align:center;
+  width:100%;
+  padding:2px 2px 2px 20px;
+  display:none;
+  background-color:#1263B9;
+}
+/*
+*  Notify Bar - jQuery plugin
+*
+*  Copyright (c) 2009-2010 Dmitri Smirnov
+*
+*  Licensed under the MIT license:
+*  http://www.opensource.org/licenses/mit-license.php
+*  
+*  Version: 1.2
+*
+*  Project home:
+*  http://www.dmitri.me/blog/notify-bar
+*/
+
+.jquery-notify-bar {
+  width:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:32768;
+  background-color:#efefef;
+  font-size:18px;
+  color:#000;
+  text-align:center;
+  font-family: Arial, Verdana, sans-serif;
+  padding:20px 0px;
+  border-bottom:1px solid #bbb;
+}
+.jquery-notify-bar.error {
+  color:#f00;
+  background-color:#fdd;
+}
+.jquery-notify-bar.success {
+  color:#060;
+  background-color:#BBFFB6;
+}
+.notify-bar-close {
+  position:absolute;
+  left:95%;
+  font-size:11px;
+}

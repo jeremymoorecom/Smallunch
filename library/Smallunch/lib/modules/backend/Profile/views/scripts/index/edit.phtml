@@ -1,0 +1,18 @@
+<div id="zf_admin_container">
+  
+  <div id="zf_admin_header">
+    <?php echo $this->partial('_partial/_edit_header.phtml', 'Profile', array('profile' => $this->profile)); ?>
+  </div>
+  
+  <div id="zf_admin_content">
+    <form action="<?php echo $this->url(array('module' => 'Profile', 'action' => 'edit'), 'default', 'true'); ?>" method="POST" name="edit-form" id="edit-form" enctype="multipart/form-data">
+    <?php echo $this->partial('_partial/_messages.phtml', 'default', array('errorMessages' => $this->errorMessages, 'messages'=>$this->messages)); ?>
+    <?php echo $this->partial('_partial/_edit_form.phtml', 'Profile', array('profile' => $this->profile)); ?>
+    <?php echo $this->partial('_partial/_edit_actions.phtml', 'Profile', array('profile' => $this->profile, 'pager_layout'=>$this->pager_layout)); ?>
+  </div>
+  
+  <div id="zf_admin_footer">
+    <?php echo $this->partial('_partial/_edit_footer.phtml', 'Profile', array('columns' => $this->columns, 'pager_layout'=>$this->pager_layout)); ?>
+  </div>
+
+</div>

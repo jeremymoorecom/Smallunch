@@ -1,0 +1,18 @@
+<div id="zf_admin_container">
+  
+  <div id="zf_admin_header">
+    <?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_edit_header.phtml', '[[moduleName]]', array('[[moduleNameVar]]' => $this->[[moduleNameVar]])); ?>
+  </div>
+  
+  <div id="zf_admin_content">
+    <form action="<?php echo $this->url(array('module' => '[[moduleName]]', 'controller'=>'[[CONTROLLER_NAME]]', 'action' => 'edit'), 'default', 'true'); ?>" method="POST" name="edit-form" id="edit-form" enctype="multipart/form-data">
+    <?php echo $this->partial('_partial/_messages.phtml', 'default', array('errorMessages' => $this->errorMessages, 'messages'=>$this->messages)); ?>
+    <?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_edit_form.phtml', '[[moduleName]]', array('[[moduleNameVar]]' => $this->[[moduleNameVar]])); ?>
+    <?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_edit_actions.phtml', '[[moduleName]]', array('[[moduleNameVar]]' => $this->[[moduleNameVar]], 'pager_layout'=>$this->pager_layout)); ?>
+  </div>
+  
+  <div id="zf_admin_footer">
+    <?php echo $this->partial('[[CONTROLLER_VIEW]]/_partial/_edit_footer.phtml', '[[moduleName]]', array('columns' => $this->columns, 'pager_layout'=>$this->pager_layout)); ?>
+  </div>
+
+</div>

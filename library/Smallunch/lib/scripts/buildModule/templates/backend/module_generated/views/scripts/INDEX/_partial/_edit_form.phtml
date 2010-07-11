@@ -1,0 +1,20 @@
+<?php echo $this->formHidden('id', $this->[[moduleNameVar]]['id']); ?>
+
+<div class="ui-state-default"><strong>[[moduleName]]</strong>
+<?php if ($this->[[moduleNameVar]]['id']): ?>
+  <span style="float:right; padding-right:10px">
+    <a href="<?php echo $this->url(array('module'=>'[[moduleName]]', 'action'=>'prev'), '', 'true'); ?>/id/<?php echo $this->[[moduleNameVar]]['id'] ?>">Prev</a> | 
+    <a href="<?php echo $this->url(array('module'=>'[[moduleName]]', 'action'=>'next'), '', 'true'); ?>/id/<?php echo $this->[[moduleNameVar]]['id'] ?>">Next</a>
+  </span>
+<?php endif; ?>
+</div>
+<div class="ui-widget-content">
+<div id="tabs_edit">
+    <ul>
+      <li><a href="#basics"><span>Basics</span></a></li>
+    </ul>
+    <div id="basics">
+<table border="0" width="100%">
+  [[edit_vars]]
+</table>
+</div>

@@ -1,0 +1,23 @@
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function() {
+	jQuery.blockUI.defaults.bindEvents=true;
+	jQuery("#loading").bind("ajaxSend", function(){
+		jQuery.blockUI({message: "<img src='<?php echo $this->baseUrl(1);?>/images/ajax-loader.gif'><br/>Processing.. Please wait"});
+		   //jQuery(this).show();
+	 }).bind("ajaxComplete", function(){
+		 jQuery.unblockUI();
+	   //jQuery(this).hide();
+	 });
+<?php echo $this->placeholder('jQuery'); ?>
+});
+
+<?php if ($this->placeholder('ext') != ''): ?>
+Ext.onReady(function() {
+	<?php echo $this->placeholder('ext'); ?>
+});
+<?php endif; ?>
+<?php if ($this->placeholder('yui') != ''): ?>
+  <?php echo $this->placeholder('yui'); ?>
+<?php endif;?>
+</script>

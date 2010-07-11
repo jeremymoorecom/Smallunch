@@ -1,0 +1,14 @@
+<?php $this->placeholder('jQuery')->captureStart(); ?>
+    jQuery("#tabs_edit").tabs();
+      jQuery('#delete').bind('click', function(){
+          var answer = confirm("Delete this entry?")
+          if (!answer){
+            return false;
+          }
+          
+          return true;
+        });
+    jQuery('#toggleImages').bind('click', function(){
+      jQuery('#upload_images').toggle();
+    });
+<?php $this->placeholder('jQuery')->captureEnd(); ?>

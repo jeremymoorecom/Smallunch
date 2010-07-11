@@ -1,0 +1,34 @@
+UserRoles:
+  Admin:
+    name: Administrator
+    layout: admin
+  User:
+    name: User
+    layout: user
+Users:
+  admin_user:
+    username: admin
+    password: 21232f297a57a5a743894a0e4a801fc3
+    active: 'True'
+    UserRoles: [Admin]
+AclResources:
+  default:
+    name: default
+    application:  backend
+    UserRoles: [User]
+  login:
+    name: Login
+    application:  backend
+    UserRoles:  [User]
+  profile:
+    name: Profile
+    application:  backend
+    UserRoles:  [User]
+  usersMod:
+    name: Users
+    application:  backend
+    UserRoles:  [Admin]
+  cache:
+    name: Cache
+    application:  backend
+    UserRoles:  [Admin]

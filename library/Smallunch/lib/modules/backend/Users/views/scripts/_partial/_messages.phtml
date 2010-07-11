@@ -1,0 +1,31 @@
+<?php if ($this->errorMessages != array()): ?>
+  <div class="ui-widget">
+    <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"> 
+      <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span> 
+        <?php foreach ($this->errorMessages as $msg): ?>
+          <?php if (is_array($msg)): ?>
+            <?php foreach ($msg as $m): ?>
+              <?php echo $m.'<br/>'; ?>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <?php  echo $msg.'<BR>'; ?>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </p>
+    </div>
+  </div>
+
+<?php elseif ($this->messages != array()): ?>
+  <?php $message = ''; ?>
+  <?php foreach ($this->messages as $msg): ?>
+    <?php $message .= $msg.'<br/>';?>
+  <?php endforeach; ?>
+
+  <?php $this->placeholder('jQuery')->captureStart(); ?>
+    jQuery.notifyBar({
+      html: "<?php echo $message;?>",
+      delay: 2000,
+      animationSpeed: "normal"
+    });
+  <?php $this->placeholder('jQuery')->captureEnd(); ?>
+<?php endif; ?>

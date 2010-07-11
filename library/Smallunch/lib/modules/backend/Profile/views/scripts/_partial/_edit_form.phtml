@@ -1,0 +1,173 @@
+<?php $this->headScript()->appendFile($this->baseUrl(1).'/js/plugins/jquery.validate.min.js'); ?>
+<?php echo $this->formHidden('id', $this->profile->id); ?>
+
+<div class="ui-widget-content">
+<div id="tabs_edit">
+    <ul>
+      <li><a href="#basics"><span>Basics</span></a></li>
+      <li><a href="#contact"><span>Contact Information</span></a></li>
+      <?php if ($this->profile['UserRoles']->name == 'Radio Station'): ?>
+      <li><a href="#contest"><span>Contest Information</span></a></li>
+      <?php endif; ?>
+    </ul>
+    <div id="basics">
+<table border="0" width="100%">
+    <tr>
+      <td width="100px"><label><?php if ($this->profile->id != ''): ?>Reset <?php endif;?>Password:</label></td>
+      <?php if ($this->profile->id != ''): ?>
+      <td><?php echo $this->formPassword("profile[password]", ''); ?></td>
+      <?php else: ?>
+      <td><?php echo $this->formText("profile[password]", '', array('class'=>'required')); ?></td>
+      <?php endif; ?>
+    </tr>
+    <tr>
+      <td width="100px"><label>Verify Password</label></td>
+      <td><?php echo $this->formPassword("profile[password2]", ''); ?><span id='passwords_doesnt_match'></span></td>
+<tr>
+      <td width="100px"><label>Email:</label></td>
+      <td><?php echo $this->formText("profile[email]", $this->profile->email, array('class'=>'required email')); ?></td>
+    </tr>
+
+<tr>
+      <td width="100px"><label>Organization:</label></td>
+      <td><?php echo $this->formText("profile[organization]", $this->profile->organization); ?></td>
+    </tr>
+
+</table>
+</div>
+<div id='contact'>
+  <table border="0" width="100%">
+  <tr>
+      <td width="100px"><label>First Name:</label></td>
+      <td><?php echo $this->formText("profile[first_name]", $this->profile->first_name); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Middle Name:</label></td>
+      <td><?php echo $this->formText("profile[middle_name]", $this->profile->middle_name); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Last Name:</label></td>
+      <td><?php echo $this->formText("profile[last_name]", $this->profile->last_name); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Address1:</label></td>
+      <td><?php echo $this->formText("profile[address1]", $this->profile->address1); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Address2:</label></td>
+      <td><?php echo $this->formText("profile[address2]", $this->profile->address2); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>City:</label></td>
+      <td><?php echo $this->formText("profile[city]", $this->profile->city); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>State:</label></td>
+      <td><?php echo $this->stateBox("profile[state]", $this->profile->state); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Zip:</label></td>
+      <td><?php echo $this->formText("profile[zip]", $this->profile->zip); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Phone:</label></td>
+      <td><?php echo $this->formText("profile[phone]", $this->profile->phone); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Cell:</label></td>
+      <td><?php echo $this->formText("profile[cell]", $this->profile->cell); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Fax:</label></td>
+      <td><?php echo $this->formText("profile[fax]", $this->profile->fax); ?></td>
+    </tr>
+  </table>
+</div>
+<?php if ($this->profile['UserRoles']->name == 'Radio Station'): ?>
+<div id='contest'>
+  <table border="0" width="100%">
+  <tr>
+      <td width="100px"><label>Contest Date:</label></td>
+      <td><?php echo $this->formText("profile[contest_date]", $this->profile->contest_date); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Contest Time:</label></td>
+      <td><?php echo $this->formText("profile[contest_time]", $this->profile->contest_time); ?></td>
+    </tr>
+<tr>
+      <td width="100px"><label>Contest Location:</label></td>
+      <td><?php echo $this->formTextarea("profile[contest_location]", $this->profile->contest_location); ?></td>
+    </tr>
+  </table>
+</div>
+<?php endif;?>
+<?php $this->placeholder('jQuery')->captureStart(); ?>
+jQuery('#profile-contest_date').datepicker();
+jQuery('#edit-form').validate({
+  rules: {
+    "users-email": {
+      required: true,
+      email: true
+    }
+  }
+});
+jQuery('#profile-username').bind('change', function(){
+   jQuery.ajax({
+   type: "POST",
+   url: "<?php echo $this->baseUrl(1)?>/profile/index/ajaxusername",
+   data: "name="+jQuery(this).val()+"&id=<?php echo $this->profile->id?>",
+   beforeSend: function(){
+    jQuery('#username_check').html('<img src="<?php echo $this->baseUrl(1)?>/images/loader.gif">');
+   },
+   success: function(msg){
+     if (msg == 'OK') {
+      jQuery('#username_check').html('<img src="<?php echo $this->baseUrl(1)?>/images/accepted.png"><font color="Green"> Available </font>');
+      jQuery('#save').removeAttr("disabled");
+      jQuery('#save_and_add').removeAttr("disabled");
+      jQuery('#save_and_list').removeAttr("disabled");
+     }
+     else
+     {
+      jQuery('#username_check').html('<font color="Red"> Not Available </font>');
+      jQuery('#save').attr("disabled", "true");
+      jQuery('#save_and_add').attr("disabled", "true");
+      jQuery('#save_and_list').attr("disabled", "true");
+     }
+   }
+ });
+});
+// compare password fields
+togglePasswordsDoesntMatch = function() {
+    if (jQuery.trim($("#profile-password").val()) == "" &&
+        jQuery.trim($("#profile-password2").val()) == "") {
+        //jQuery('#passwords_doesnt_match').html("Password fields are required");
+        //is_valid_password = false;
+        jQuery('#passwords_doesnt_match').html("");
+        is_valid_password = true;
+    } else {
+        if (jQuery.trim($("#profile-password").val()) ==
+            jQuery.trim($("#profile-password2").val())) {
+            jQuery('#passwords_doesnt_match').html("");
+            is_valid_password = true;
+        } else {
+            jQuery('#passwords_doesnt_match').html("<font color='Red'>Passwords doesn't match</font>");
+            is_valid_password = false;
+        }
+    }
+
+toggleSubmit(is_valid_password);
+}
+toggleSubmit = function(is_valid_password) {
+    if (is_valid_password) {
+        jQuery('#save').removeAttr("disabled");
+        jQuery('#save_and_add').removeAttr("disabled");
+        jQuery('#save_and_list').removeAttr("disabled");
+    } else {
+        jQuery('#save').attr("disabled", "true");
+        jQuery('#save_and_add').attr("disabled", "true");
+        jQuery('#save_and_list').attr("disabled", "true");
+    }
+}
+jQuery("#profile-password").bind('change keyup', function() { togglePasswordsDoesntMatch(); });
+jQuery("#profile-password2").bind('change keyup', function() { togglePasswordsDoesntMatch(); });
+<?php $this->placeholder('jQuery')->captureEnd() ?>

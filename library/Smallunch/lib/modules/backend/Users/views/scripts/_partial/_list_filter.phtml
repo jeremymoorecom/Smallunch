@@ -1,0 +1,12 @@
+<div class="ui-state-default"  id='filter_container'><strong>Filters</strong></div>
+<div class="ui-widget-content" id='filters' style='display:block'>
+<form action="<?php echo $this->url(array('module' => 'Users', 'action' => 'list'), 'default', 'true'); ?>" method="POST">
+<?php foreach ($this->filter as $kfilter => $filter): ?>
+  <?php echo (key_exists($kfilter, $this->labels) ? $this->labels[$kfilter] : $kfilter)?>
+  <input type='text' id='filter-<?php echo $kfilter; ?>' name='filter[<?php echo $kfilter;?>]' value='<?php echo $filter;?>'>
+  <br/>
+<?php endforeach;?>
+<input type='submit' value='submit'>
+&nbsp;&nbsp;<a href="<?php echo $this->url(array('module' => 'Users', 'action' => 'list'), 'default', 'true'); ?>">clear</a>
+</form>
+</div>

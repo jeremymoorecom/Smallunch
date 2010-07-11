@@ -1,0 +1,11 @@
+list:
+  title:  Users
+  display:  [id, username, organization, first_name, last_name]
+  filters: [username, organization, email, first_name, last_name]
+  perpage:  20
+labels:
+  id: ID
+  username: User Name
+  first_name: First Name
+  last_name:  Last Name
+  organization: Organization

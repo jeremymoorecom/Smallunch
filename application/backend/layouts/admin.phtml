@@ -1,0 +1,110 @@
+<? echo $this->doctype() ?>
+<head>
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headLink(); ?>
+<?php echo $this->headScript(); ?>
+</head>
+<body>
+<div class="yui-skin-sam" id="yahoo-com">
+  <div id="navigation" class="yuimenubar yuimenubarnav">
+    <div class="bd">
+      <ul class="first-of-type">
+        <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="<?php echo $this->baseUrl(); ?>">Home</a>
+        <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="http://<?php echo str_replace('//', '/', $_SERVER['HTTP_HOST'].'/'.str_replace('admin', '',$this->baseUrl()));?>" target="_blank">View Website</a>
+        <li class="yuimenubaritem "><a class="yuimenubaritemlabel" href="#">Example</a>
+          <div id="mfgs_nav" class="yuimenu">
+            <div class="bd">
+              <ul>
+                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">sub 1</a></li>
+                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">sub 2</a></li>
+                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">Nested</a>
+                  <div id="mfg_cat_nav" class="yuimenu">
+                    <div class="bd">
+                      <ul class="first-of-type">
+                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">Nested Sub</a></li>
+                      </ul>            
+                    </div>
+                  </div>                    
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="yuimenubaritem "><a class="yuimenubaritemlabel" href="#">Users</a>
+          <div id="user_nav" class="yuimenu">
+            <div class="bd">
+              <ul>
+                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php echo $this->url(array('module'=>'Users', 'action'=>'list'), '', 'true'); ?>">List</a></li>
+                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php echo $this->url(array('module'=>'Users', 'action'=>'edit'), '', 'true'); ?>">New</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <?php if (APPLICATION_ENV == 'development'): ?>
+        <li class="yuimenubaritem "><a class="yuimenubaritemlabel" href="#">Development</a>
+          <div id="dev_nav" class="yuimenu">
+            <div class="bd">
+              <ul>
+                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">This only displays in Dev mode</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <?php endif;?>
+        <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="<?php echo $this->url(array('module'=>'Profile', 'action'=>'index'), '', 'true'); ?>">Profile</a>
+        <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="<?php echo $this->url(array('module'=>'Cache', 'action'=>'clear'), '', 'true'); ?>" id="clear-cache">Clear Cache</a>
+        
+        <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="<?php echo $this->url(array('module'=>'Login', 'action'=>'logout'), '', 'true'); ?>">Log Out</a>
+      </ul>            
+    </div>
+  </div>
+</div>
+<div class="container ">	
+	<div class="span-23 prepend-top">
+	
+		<?php echo $this->layout()->content ?>
+	</div>	
+	</div>
+<?php $this->placeholder('jQuery')->captureStart(); ?>
+  jQuery('#clear-cache').click(function(){
+	  jQuery.ajax({
+	    type: "POST",
+	    url: "<?php echo $this->baseUrl()?>/Cache/index/clear",
+	    dataType: 'json',
+	    success: function(data){
+	      jQuery.notifyBar({
+		      html: data.message,
+		      delay: 2000,
+		      animationSpeed: "normal"
+		    });
+	  }
+  });
+  return false;
+  });
+<?php $this->placeholder('jQuery')->captureEnd() ?>
+
+
+<?php $this->placeholder('yui')->captureStart(); ?>
+  /* Initialize and render the MenuBar when its elements are ready to be scripted. */
+  YAHOO.util.Event.onContentReady("navigation", function () {
+    /*
+      Instantiate a MenuBar:  The first argument passed to the constructor
+      is the id for the Menu element to be created, the second is an 
+      object literal of configuration properties.
+    */
+    var oMenuBar = new YAHOO.widget.MenuBar("navigation", { 
+                                                            autosubmenudisplay: true, 
+                                                            hidedelay: 750, 
+                                                            lazyload: true });
+    /*
+      Call the "render" method with no arguments since the 
+      markup for this MenuBar instance is already exists in 
+      the page.
+    */
+    oMenuBar.render();
+    });
+<?php $this->placeholder('yui')->captureEnd() ?>
+<?php echo $this->partial('_javascript_bottom.phtml', array()); ?>
+</body>
+</html>

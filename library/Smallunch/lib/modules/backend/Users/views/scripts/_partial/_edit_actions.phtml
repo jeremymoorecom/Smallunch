@@ -1,0 +1,21 @@
+
+<div style="float:right;padding-top:15px; padding-bottom:15px;">
+  <?php echo $this->formSubmit('save', 'Save', array('class'=>'button')); ?>
+  <?php echo $this->formSubmit('save_and_add', 'Save & Add', array('class'=>'button')); ?>
+  <?php echo $this->formSubmit('save_and_list', 'Save & List', array('class'=>'button')); ?>
+</div>
+</form>
+
+<div style="float:left;padding-top:15px; padding-bottom:15px;">
+  <form action="<?php echo $this->url(array('module'=>'Users', 'action'=>'index')) ?>"><input type="submit" value="List" class="button"></form>
+</div>
+
+<?php if ($this->users->id): ?>
+<div style="float:left;padding-top:15px; padding-bottom:15px;">
+  <?php echo $this->form('delete-form', array('action'=>$this->url(array('module'=>'Users', 'action'=>'delete')), 'method'=>'post')); ?>
+  <?php echo $this->formHidden('id', $this->users->id); ?>
+  <?php echo $this->formSubmit('delete', 'Delete', array('class'=>'button')); ?>
+  </form>
+</div>
+<?php endif; ?>
+

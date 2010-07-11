@@ -1,0 +1,61 @@
+options:
+  type: INNODB
+  collate : utf8_unicode_ci
+  charset : utf8
+UserRoles:
+  tableName:  user_roles
+  columns:
+    id:
+      type: integer(4)
+      primary:  true
+      autoincrement:  true
+    name: string(255)
+    inherit_id: integer(4)
+    layout: string(255)
+AclResources:
+  tableName:  acl_resources
+  columns:
+    id:
+      type: integer(4)
+      primary:  true
+      autoincrement:  true
+    name: string(255)
+    application:  string(20)
+    role_id: integer(4)
+  relations:
+    UserRoles:
+      foreign:  id
+      local:  role_id
+Users:
+  tableName:  users
+  columns:
+    id:
+      type: integer(4)
+      primary:  true
+      autoincrement:  true
+    username: string(255)
+    email:  string(255)
+    first_name: string(255)
+    middle_name:  string(255)
+    last_name:  string(255)
+    address1: string(255)
+    address2: string(255)
+    city: string(255)
+    state:  string(255)
+    zip:  string(255)
+    phone:  string(255)
+    cell: string(255)
+    fax:  string(255)
+    organization: string(255)
+    password: string(255)
+    password_reset: string(255)
+    user_role_id: integer(4)
+    active:
+      type: enum
+      values: ['True', 'False']
+      default:  'False'
+    user_notes: string(2147483647)
+  relations:
+    UserRoles:
+      foreign:  id
+      local:  user_role_id

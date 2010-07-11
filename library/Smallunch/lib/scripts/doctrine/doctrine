@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+require_once(realpath(dirname(__FILE__)).'/../includes/bootstrap_doctrine.php'); 
+$cli = new Doctrine_Cli($application->getOption('doctrine'));
+//print_r($argv);die();
+$cli = new Doctrine_Cli($application->getOption('doctrine'));
+#$cli->run($argv);
+$cli->run($_SERVER['argv']);
