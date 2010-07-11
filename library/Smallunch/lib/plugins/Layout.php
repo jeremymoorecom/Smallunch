@@ -64,25 +64,37 @@ class Smallunch_lib_plugins_Layout extends Zend_Controller_Plugin_Abstract
     if (isset($config->style->screen->stylesheet) && $config->style->screen->stylesheet != '') {
       $css = explode(',', $config->style->screen->stylesheet);
       foreach ($css as $s) {
-        if (substr_compare(trim($s), 'http', 0, 4) == 0) {
+        if (@substr_compare(trim($s), 'http', 0, 4) == 0) {
           $head->headLink()->appendStylesheet(trim($s), 'screen');
         }
         else 
         {
-          $head->headLink()->appendStylesheet($baseUrl.DIRECTORY_SEPARATOR.$stylesheet_dir.DIRECTORY_SEPARATOR.trim($s).'.css', 'screen');
+          $head->headLink()->appendStylesheet($baseUrl.DIRECTORY_SEPARATOR.$stylesheet_dir.DIRECTORY_SEPARATOR.trim($s), 'screen');
         }
       }
     }
-    
+    // IE stylesheet
+    if (isset($config->ie->screen->stylesheet) && $config->ie->screen->stylesheet != '') {
+      $css = explode(',', $config->ie->screen->stylesheet);
+      foreach ($css as $s) {
+        if (@substr_compare(trim($s), 'http', 0, 4) == 0) {
+          $head->headLink()->appendStylesheet(trim($s), 'screen', 'IE');
+        }
+        else 
+        {
+          $head->headLink()->appendStylesheet(str_replace('//', '/', $this->baseUrl.DIRECTORY_SEPARATOR.$stylesheet_dir.DIRECTORY_SEPARATOR.trim($s)), 'screen', 'IE');
+        }
+      }
+    }
     if (isset($config->style->print->stylesheet) && $config->style->print->stylesheet != '') {
       $css = explode(',', $config->style->print->stylesheet);
       foreach ($css as $s) {
-        if (substr_compare(trim($s), 'http', 0, 4) == 0) {
+        if (@substr_compare(trim($s), 'http', 0, 4) == 0) {
           $head->headLink()->appendStylesheet(trim($s), 'print');
         }
         else 
         {
-          $head->headLink()->appendStylesheet($baseUrl.DIRECTORY_SEPARATOR.$stylesheet_dir.DIRECTORY_SEPARATOR.trim($s).'.css', 'print');
+          $head->headLink()->appendStylesheet($baseUrl.DIRECTORY_SEPARATOR.$stylesheet_dir.DIRECTORY_SEPARATOR.trim($s), 'print');
         }
       }
     }
@@ -90,12 +102,12 @@ class Smallunch_lib_plugins_Layout extends Zend_Controller_Plugin_Abstract
     if (isset($config->yui->css) && $config->yui->css != '') {
       $css = explode(',', $config->yui->css);
       foreach ($css as $s) {
-        if (substr_compare(trim($s), 'http', 0, 4) == 0) {
+        if (@substr_compare(trim($s), 'http', 0, 4) == 0) {
           $head->headLink()->appendStylesheet(trim($s), 'screen');
         }
         else 
         {
-          $head->headLink()->appendStylesheet($baseUrl.DIRECTORY_SEPARATOR.$yui_dir.DIRECTORY_SEPARATOR.trim($s).'.css', 'screen');
+          $head->headLink()->appendStylesheet($baseUrl.DIRECTORY_SEPARATOR.$yui_dir.DIRECTORY_SEPARATOR.trim($s), 'screen');
         }
       }
     }
@@ -106,11 +118,11 @@ class Smallunch_lib_plugins_Layout extends Zend_Controller_Plugin_Abstract
       $js = explode(',', $config->js->js);
       
       foreach ($js as $j) {
-        if (substr_compare(trim($j), 'http', 0, 4) == 0) {
+        if (@substr_compare(trim($j), 'http', 0, 4) == 0) {
           $headScript->headScript()->appendFile(trim($j));
         }
         else {
-          $headScript->headScript()->appendFile($baseUrl.DIRECTORY_SEPARATOR.$js_dir.DIRECTORY_SEPARATOR.trim($j).'.js');
+          $headScript->headScript()->appendFile($baseUrl.DIRECTORY_SEPARATOR.$js_dir.DIRECTORY_SEPARATOR.trim($j));
         }
       }
     }
@@ -118,11 +130,11 @@ class Smallunch_lib_plugins_Layout extends Zend_Controller_Plugin_Abstract
       $js = array_reverse(explode(',', $config->js->prepend));
       
       foreach ($js as $j) {
-        if (substr_compare(trim($j), 'http', 0, 4) == 0) {
+        if (@substr_compare(trim($j), 'http', 0, 4) == 0) {
           $headScript->headScript()->prependFile(trim($j));
         }
         else {
-          $headScript->headScript()->prependFile($baseUrl.DIRECTORY_SEPARATOR.$js_dir.DIRECTORY_SEPARATOR.trim($j).'.js');
+          $headScript->headScript()->prependFile($baseUrl.DIRECTORY_SEPARATOR.$js_dir.DIRECTORY_SEPARATOR.trim($j));
         }
       }
     }
@@ -131,11 +143,11 @@ class Smallunch_lib_plugins_Layout extends Zend_Controller_Plugin_Abstract
       $js = explode(',', $config->yui->js);
       
       foreach ($js as $j) {
-        if (substr_compare(trim($j), 'http', 0, 4) == 0) {
+        if (@substr_compare(trim($j), 'http', 0, 4) == 0) {
           $headScript->headScript()->appendFile(trim($j));
         }
         else {
-          $headScript->headScript()->appendFile($baseUrl.DIRECTORY_SEPARATOR.$yui_dir.DIRECTORY_SEPARATOR.trim($j).'.js');
+          $headScript->headScript()->appendFile($baseUrl.DIRECTORY_SEPARATOR.$yui_dir.DIRECTORY_SEPARATOR.trim($j));
         }
       }
     }
