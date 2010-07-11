@@ -2,14 +2,17 @@ Welcome to Smallunch Framework.
 
 RELEASE INFORMATION
 ---------------
-0.20 Release! 
+0.20 Release
 Released on July 11, 2010.
 
 CHANGES
 ------------
 
 * Huge rewrite from previous version of Smallunch
+Some changes worth mentioning:
 * The Core of Smallunch has moved to Smallunch/lib, this should make updating easier
+* Changed default admin password to 'admin'
+* Added 'Next'/'Previous' links on edit form for moving to the next/previous record (retaining filters)
 
 SYSTEM REQUIREMENTS
 -------------------
