@@ -1,5 +1,5 @@
 <?php
-class Smallunch_lib_View_Helper__Short extends Zend_View_Helper_FormSelect
+class Smallunch_lib_View_Helper_Short extends Zend_View_Helper_FormSelect
 {
   /**
    * Return Categories Doctrine Array
