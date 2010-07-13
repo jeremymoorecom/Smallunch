@@ -2,14 +2,12 @@
 class Smallunch_lib_View_Helper_StateBox extends Zend_View_Helper_FormSelect
 {
   /**
-   * Generate dropdown box for Manufacturers
-   *
-   * @param unknown_type $name
-   * @param unknown_type $value
-   * @param unknown_type $attribs
-   * @param unknown_type $options
-   * @param unknown_type $listsep
-   * @return unknown
+   * Generate dropdown box for US States
+   * 
+   * @param string $name Name for form element
+   * @param string $value String for selected element
+   * @param $attribs  Attributes added to the 'select' tag.
+   * @param array $options Array for select options
    */
   function stateBox($name, $value = null, $attribs = null, $options = array())
   {
