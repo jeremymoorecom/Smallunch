@@ -210,8 +210,8 @@ class handler
 		  $this->frontendFields();
 		  $this->build_list_functions();
 		  $this->table_with_relations = "Doctrine_Query::create()->from('".$this->tableName." ".$this->table_as."')"
-		    .$this->getRelations($this->tableName, $this->table_as)
-		    ."->where('".$this->table_as.".id=?'";
+		    .$this->getRelations($this->tableName, $this->table_as)."
+		    ->where('".$this->table_as.".id=?'";
 		  
 		  if (!file_exists($this->generated_dir.DIRECTORY_SEPARATOR.'modules')) { mkdir($this->generated_dir.DIRECTORY_SEPARATOR.'modules'); }
       
